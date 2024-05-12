@@ -1,0 +1,13 @@
+:root {
+  --bg-color-main: #1a1a1a;
+  --bg-color-container: #242424;
+}
+
+body {
+  background-color: var(--bg-color-main);
+}
+
+* {
+  color: white;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
