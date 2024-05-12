@@ -60,6 +60,7 @@
     </div>
 
     <p v-show="false">{{ tasksRevertidas }}</p>
+    <p v-show="false">{{ tasksRevertidas }}</p>
   </div>
 </template>
 
