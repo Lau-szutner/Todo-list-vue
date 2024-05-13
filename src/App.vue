@@ -7,24 +7,27 @@
     <p>Total tasks {{ totalItems }}</p>
 
     <div id="listContainer" class="rounded-3 p-4 w-75">
-      <form action="" class="d-flex gap-3 align-items-center">
+      <form
+        action=""
+        class="d-flex gap-3 align-items-center flex-column flex-md-row"
+      >
         <textarea
           name=""
           v-model="input"
           value="text"
-          class="w-100 text-black"
+          class="text-black col-12 col-md-9"
         ></textarea>
         <button
           @click.prevent="add"
           id="addButton"
-          class="p-3 border-0 rounded-2 w-25"
+          class="p-3 border-0 rounded-2 col-12 col-md-3"
         >
           Add
         </button>
       </form>
       <ul class="px-0 d-flex flex-column gap-1 my-2" v-if="hasItem">
         <li
-          v-for="(item, index) in reverseTasks"
+          v-for="(item, index) in tasks"
           class="todoItem d-flex align-center justify-content-between p-2 px-4 rounded-1"
           :key="index"
           :class="{ completed: item.completed, delete: item.delete }"
@@ -33,7 +36,7 @@
             {{ item.name }}
           </p>
           <div class="d-flex gap-2">
-            <button
+            <!-- <button
               class="border-0 rounded-1 delete-button"
               @click.prevent="del(index)"
             >
@@ -43,13 +46,27 @@
                 class="border-0 p-2"
                 id="img"
               />
-            </button>
+            </button> -->
+
             <button
               class="border-0 rounded-1 check-button"
               @click.prevent="completedT(index)"
+              v-if="item.completed === false"
             >
               <img
                 src="./assets/check2.svg"
+                alt="Ejemplo SVG"
+                class="border-0 p-2"
+              />
+            </button>
+
+            <button
+              class="border-0 rounded-1 delete-button"
+              @click.prevent="del(index)"
+              v-else-if="item.delete === false"
+            >
+              <img
+                src="./assets/trash3.svg"
                 alt="Ejemplo SVG"
                 class="border-0 p-2"
               />
@@ -59,8 +76,7 @@
       </ul>
     </div>
 
-    <p v-show="false">{{ tasksRevertidas }}</p>
-    <p v-show="false">{{ tasksRevertidas }}</p>
+    <!-- <p v-show="true">{{ tasksRevertidas }}</p> -->
   </div>
 </template>
 
@@ -75,7 +91,6 @@ export default {
       isHover: [],
       completed: false,
       beDelete: false,
-      reverseTasks: [],
     };
   },
   computed: {
@@ -89,19 +104,16 @@ export default {
         return this.tasks.length;
       }
     },
-    tasksRevertidas() {
-      return (this.reverseTasks = this.tasks.slice().reverse());
-    },
   },
   methods: {
     add() {
       if (this.input.trim() === "") {
         return;
       } else {
-        this.tasks.push({
+        this.tasks.unshift({
           name: this.input,
           completed: this.completed,
-          delete: this.Delete,
+          delete: this.beDelete,
         });
         this.input = "";
       }
@@ -110,10 +122,10 @@ export default {
       this.add();
     },
     completedT(index) {
-      this.reverseTasks[index].completed = !this.reverseTasks[index].completed;
+      this.tasks[index].completed = !this.tasks[index].completed;
     },
     del(index) {
-      this.reverseTasks.splice(index, 1);
+      this.tasks.splice(index, 1);
     },
   },
 };
