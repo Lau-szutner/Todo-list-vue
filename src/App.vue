@@ -36,18 +36,6 @@
             {{ item.name }}
           </p>
           <div class="d-flex gap-2">
-            <!-- <button
-              class="border-0 rounded-1 delete-button"
-              @click.prevent="del(index)"
-            >
-              <img
-                src="./assets/trash3.svg"
-                alt="Ejemplo SVG"
-                class="border-0 p-2"
-                id="img"
-              />
-            </button> -->
-
             <button
               class="border-0 rounded-1 check-button"
               @click.prevent="completedT(index)"
@@ -75,8 +63,6 @@
         </li>
       </ul>
     </div>
-
-    <!-- <p v-show="true">{{ tasksRevertidas }}</p> -->
   </div>
 </template>
 
