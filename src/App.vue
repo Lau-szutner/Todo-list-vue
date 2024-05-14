@@ -71,10 +71,10 @@ export default {
   name: "App",
   data() {
     return {
-      hasItem: null,
       tasks: [],
-      input: "",
       isHover: [],
+      hasItem: null,
+      input: "",
       completed: false,
       beDelete: false,
     };
@@ -101,6 +101,7 @@ export default {
           completed: this.completed,
           delete: this.beDelete,
         });
+        localStorage.setItem("tasks", JSON.stringify(this.tasks));
         this.input = "";
       }
     },
@@ -113,6 +114,12 @@ export default {
     del(index) {
       this.tasks.splice(index, 1);
     },
+  },
+  created() {
+    let data = localStorage.getItem("tasks");
+    if (data !== null) {
+      this.tasks = JSON.parse(data);
+    }
   },
 };
 </script>
