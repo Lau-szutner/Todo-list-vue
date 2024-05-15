@@ -9,7 +9,7 @@
     <div id="listContainer" class="rounded-3 p-4 w-75">
       <form
         action=""
-        class="d-flex gap-3 align-items-center flex-column flex-md-row"
+        class="d-flex align-items-center flex-column flex-md-row gap-2"
       >
         <textarea
           name=""
@@ -20,7 +20,7 @@
         <button
           @click.prevent="add"
           id="addButton"
-          class="p-3 border-0 rounded-2 col-12 col-md-3"
+          class="p-3 border-0 rounded-2 ms-1 w-100"
         >
           Add
         </button>
