@@ -110,9 +110,31 @@ export default {
     },
     completedT(index) {
       this.tasks[index].completed = !this.tasks[index].completed;
+
+      //LOCAL STORAGE
+      let data = localStorage.getItem("tasks");
+      data = JSON.parse(data);
+      data[index].completed = true;
+      localStorage.setItem("tasks", JSON.stringify(data));
     },
     del(index) {
       this.tasks.splice(index, 1);
+
+      let data = localStorage.getItem("tasks");
+
+      if (data) {
+        data = JSON.parse(data);
+
+        if (index >= 0 && index < data.length) {
+          data.splice(index, 1);
+
+          localStorage.setItem("tasks", JSON.stringify(data));
+        } else {
+          console.error("Índice fuera de rango");
+        }
+      } else {
+        console.error("No hay datos en el localStorage");
+      }
     },
   },
   created() {
