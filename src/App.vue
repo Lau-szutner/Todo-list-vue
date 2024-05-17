@@ -3,7 +3,7 @@
     class="container d-flex flex-column align-items-center mt-5"
     @keyup.enter="keyEnter"
   >
-    <h1>Todo List</h1>
+    <h1>To-Do List</h1>
     <p>Total tasks {{ totalItems }}</p>
 
     <div id="listContainer" class="rounded-3 p-4 w-75">
